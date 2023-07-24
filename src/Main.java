@@ -5,7 +5,9 @@ public class Main {
         findLeapYear(2021);
         findLeapYear(2024);
         upperApp(1, 2023);
-        calcDistanceDay(75);
+        upperApp(0, 2017);
+        printDistanceDay(75);
+        printDistanceDay(270);
 
     }
 
@@ -18,34 +20,48 @@ public class Main {
         }
     }
 
-        public static void upperApp(int OS, int year) {
-            System.out.println("Задача 2");
-            int currentYear = LocalDate.now().getYear();
+    public static void upperApp(int mobileOS, int year) {
+        System.out.println("Задача 2");
+        int currentYear = LocalDate.now().getYear();
+        String mobileOSName;
 
-            switch (OS) {
-                case 0:
-                    System.out.println("iOS");
-                case 1:
-                    System.out.println("Android");
-            }
-
-            if (year == currentYear) {
-                System.out.println("Установите облегченную версию приложения");
-            } else {
-                System.out.println("Установите полную версию приложения");
-            }
+        switch (mobileOS) {
+            case 0:
+                mobileOSName = "iOS";
+                break;
+            case 1:
+                mobileOSName = "Android";
+                break;
+            default:
+                mobileOSName = "Неизвестная ОС";
         }
-    public static void calcDistanceDay(int distance) {
-        System.out.println("Задача 4");
-        int day = 0;
+
+        if (year == currentYear) {
+            System.out.println("Установите обычную версию приложения " + mobileOSName + " ОС");
+        } else {
+            System.out.println("Установите облегченную версию приложения " + mobileOSName + " ОС");
+        }
+    }
+    public static int calcDistanceDay(int distance) {
+        System.out.println("Задача 3");
 
         if (distance <= 20) {
-            System.out.println("Потребуется дней " + day + 1);
+            return 1;
         } else if (distance < 60) {
-            System.out.println("Потребуется дней " + day + 2);
+            return 2;
         } else if (distance <= 100) {
-            System.out.println("Потребуется дней " + day + 3);
+            return 3;
         } else if (distance > 100) {
+            return -1;
+        }
+        return distance;
+    }
+    public static void printDistanceDay(int distance) {
+        int day = calcDistanceDay(distance);
+
+        if (day > 0) {
+            System.out.println("Потребуется для доставки " + day + " дн");
+        } else {
             System.out.println("Доставки нет");
         }
     }
